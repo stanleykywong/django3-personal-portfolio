@@ -1,0 +1,30 @@
+{% extends 'portfolio/base.html' %}
+
+<!-- # 24---personal_portfolio_project/blog/templates/blog/detail.html, add: -->
+{% load static %}
+
+{% block content %}
+
+
+    <!-- # 16d---personal_portfolio_project/blog/templates/blog/detail.html, add: -->
+    <!-- <h1>{{ blog.title }}</h1> -->
+
+    <!-- # 24b---personal_portfolio_project/blog/templates/blog/detail.html, add: -->
+    <h1 class="text-center mt-5" id="blogdetailtitle">{{ blog.title }}</h1>
+
+
+    <!-- # 18d---personal_portfolio_project/blog/templates/blog/detail.html, add: -->
+    <!-- # F	Month, textual, long.	'January'
+    # j	Day of the month without leading zeros.	'1' to '31'
+    # S	English ordinal suffix for day of the month, 2 characters.	'st', 'nd', 'rd' or 'th'
+    # Y	Year, 4 digits with leading zeros.	'0001', …, '1999', …, '9999' -->
+    <!-- <h2>--{{ blog.date | date:'F jS Y' }}--</h2> -->
+
+    <!-- # 24c---personal_portfolio_project/blog/templates/blog/detail.html, add: -->
+    <h5 class="text-center text-muted mb-5">{{ blog.date|date:'F jS Y' }}</h5>
+
+    <!-- # 18e---personal_portfolio_project/blog/templates/blog/detail.html, add: -->
+    {{ blog.description | safe | linebreaks}}
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<!-- # 23---personal_portfolio_project/blog/templates/blog/all_blogs.html, add: -->
+{% load static %}
+
+
+
+    <!-- 11e---add file: personal_portfolio_project/blog/templates/blog/all_blogs.html
+    add text:  -->
+    <!-- Hello blog -->
+
+    <!-- # 23b---personal_portfolio_project/blog/templates/blog/all_blogs.html, add: -->
+    <h1 id="blogtitle" class="font-weight-bold text-center">Blog</h1>
+
+    <!-- # 18a---personal_portfolio_project/blog/templates/blog/all_blogs.html, add: -->
+    <!-- # to auto count no, and add "s" to "blog"; it shows 0 blogs, 1 blog, 2 blogs -->
+    <!-- <h2>Stanley has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2> -->
+    <!-- # 23c---personal_portfolio_project/blog/templates/blog/all_blogs.html, change: -->
+    <h3 class="text-center mb-5">Stanley has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h3>
+
+
+
+    <!-- 14d---in personal_portfolio_project/blog/templates/blog/all_blogs.html, add: -->
+    {% for blog in blogs %}
+
+    <!-- # 23d---personal_portfolio_project/blog/templates/blog/all_blogs.html, add: -->
+    <div class="row justify-content-center my-3">
+      <div class="col-md-10">
+
+          <!-- # 16g---personal_portfolio_project/blog/templates/blog/all_blogs.html, add: <a href="{% url 'blog:detail' blog.id %}">   </a> -->
+          <a href="{% url 'blog:detail' blog.id %}">
+            <h2>{{ blog.title }}</h2>
+          </a>
+
+          <!-- # 18b---personal_portfolio_project/blog/templates/blog/all_blogs.html, modify date format: -->
+          <!-- <h5>{{ blog.date }}</h5> -->
+          <h5>{{ blog.date | date:'M d Y' | upper }}</h5>
+
+          <!-- # 18c---personal_portfolio_project/blog/templates/blog/all_blogs.html, modify: -->
+          <!-- # limit chars & remove html tags -->
+          <!-- <p>{{ blog.description }}</p> -->
+          <p>{{ blog.description | striptags | truncatechars:100 }}</p>
+          <h4>{{ blog.description | striptags | truncatechars:100 }}</h4>
+
+        </div>
+      </div>
+
+    {% endfor %}
+
+
+
+{% endblock %}
