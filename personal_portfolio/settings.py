@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+# 8a---
+import os
+
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)%roi+0fwnx6uok*s#vhx$qz37w&_xfm2v)fp99cat!zr6i_4+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+# if using PAW:
+ALLOWED_HOSTS = ['stanleykywong.pythonanywhere.com']
+# but this can make problem, as in localhost, we need run this:
+# ALLOWED_HOSTS = []
+# 1---under personal_portfolio folder, add:
+# local_settings.py
 
 
 # Application definition
@@ -125,13 +134,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
 STATIC_URL = '/static/'
+
+# *** where to save media files
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # 8c---specify media URL
 MEDIA_URL = '/media/'
 
 # 8a---*** where to save media files
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 2---in settings.py file, at the end of file, add:
+try:
+    from .local_settings import *
+except ImportError:
+    print("Looks like no local file. You must be on production")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
